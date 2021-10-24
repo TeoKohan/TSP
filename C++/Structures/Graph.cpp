@@ -17,7 +17,9 @@ Graph::Graph(int V) : V(V), N(matrix(V, V, INF)) {
  * @param E the edges in the graph.
  * @return The Graph defined by G(V, E).
  */
-Graph::Graph(int V, std::vector<Edge> E) : N(matrix(V, V, INF)) {
+Graph::Graph(int V, std::vector<Edge> E) : V(V), N(matrix(V, V, INF)) {
+    for (int i = 0; i < V; ++i)
+        N[i][i] = 0;
     for (const Edge& e : E) {
         N[e.from][e.to] = e.weight;
         N[e.to][e.from] = e.weight;
@@ -44,9 +46,10 @@ const std::vector<int>& Graph::operator[](int i) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const Graph& G) {
+    std::cout << G.N.size() << 'x' << (G.N.size() > 0 ? G.N[0].size() : 0) << std::endl;
     for(int i = 0; i < G.V; ++i) {
         for(int j = 0; j < G.V; ++j)
-            os << (j % G.V != 0 ? ','<<' ' : '\s') << G[i][j];
+            os << (j % G.V != 0 ? ", " : "") << (G[i][j] == INF ? "∞" : std::to_string(G[i][j]));
         os << std::endl;
     }
     return os;
