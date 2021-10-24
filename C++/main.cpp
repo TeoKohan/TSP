@@ -1,7 +1,13 @@
 #include "IO/IO.h"
+#include "Structures/Graph.h"
+#include <iostream>
+#include <string>
+#include <sstream>
 #include<vector>
 #include<set>
 
 int main(int argc, char* argv[]) {
-    std::cout << "ingresaste " << (argc > 1 ? argv[1] : 0) << std::endl;
+    
+    Graph G(3);
+    std::cout << G;
 }

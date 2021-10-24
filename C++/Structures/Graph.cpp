@@ -1,39 +1,53 @@
-#include<Grafo.h>
+#include "Graph.h"
 
-typedef std::vector<std::vector<int>> matrix;
-#define matrix(n, m, v) matrix(n, std::vector<int>(m, v))
+#define INF -1
 
-/**A data structure holding an Edge, that is a straight line between two points.
+/** @return An empty Graph.*/
+Graph::Graph() : V(0), N(matrix(0, 0, INF)) { }
+
+/** @param V amount of vertices in graph.
+ * @return An edgeless Graph of V vertices.
  */
-struct Edge {
-    //origin of edge
-    int from;
-    //length of edge
-    int weight;
-    //destination of edge
-    int to;
+Graph::Graph(int V) : V(V), N(matrix(V, V, INF)) {
+    for (int i = 0; i < V; ++i)
+        N[i][i] = 0;
+ }
 
-    /**Edge starting at from, ending at to, with length of length.
-    */
-    Edge(int from, int weight, int to) : from(from), weight(weight), to(to) {}
-};
-
-
-/**A data structure holding a Graph
- * composed of vertices, edges and an adjacency list or neighbourhood.
+/** @param V amount of vertices in graph.
+ * @param E the edges in the graph.
+ * @return The Graph defined by G(V, E).
  */
-class Graph {
-    public:
-        Graph(int V);
-        Graph(int V, std::vector<Edge> E);
+Graph::Graph(int V, std::vector<Edge> E) : N(matrix(V, V, INF)) {
+    for (const Edge& e : E) {
+        N[e.from][e.to] = e.weight;
+        N[e.to][e.from] = e.weight;
+    }
+}
 
-        int vertices() const;
-        std::vector<int>& operator[](int i);
-        const std::vector<int>& operator[](int i) const;
-        std::ostream& operator << (std::ostream& os);
-    private:
-        int V;
-        matrix N;
-};
+/** @return The Graph's vertex count.*/
+int Graph::vertices() const {
+    return V;
+}
 
-#endif//GRAPH_H
+/** @param i a vertex from the graph.
+ * @return A read-write neighbourhood of vertex i.
+ */
+std::vector<int>& Graph::operator[](int i) {
+    return N[i];
+}
+
+/** @param i a vertex from the graph.
+ * @return A read only neighbourhood of vertex i.
+ */
+const std::vector<int>& Graph::operator[](int i) const {
+    return N[i];
+}
+
+std::ostream& operator<< (std::ostream& os, const Graph& G) {
+    for(int i = 0; i < G.V; ++i) {
+        for(int j = 0; j < G.V; ++j)
+            os << (j % G.V != 0 ? ','<<' ' : '\s') << G[i][j];
+        os << std::endl;
+    }
+    return os;
+}
