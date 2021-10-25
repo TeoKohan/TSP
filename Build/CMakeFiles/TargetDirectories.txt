@@ -1,0 +1,4 @@
+/home/firewill/Desktop/TSP/Build/CMakeFiles/rebuild_cache.dir
+/home/firewill/Desktop/TSP/Build/CMakeFiles/edit_cache.dir
+/home/firewill/Desktop/TSP/Build/CMakeFiles/TSP.dir
+/home/firewill/Desktop/TSP/Build/CMakeFiles/TSPlib.dir
