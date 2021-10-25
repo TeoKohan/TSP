@@ -21,6 +21,12 @@ struct Edge {
 
     /**Edge starting at from, ending at to, with weight of weight.*/
     Edge(int from, int weight, int to) : from(from), weight(weight), to(to) {}
+
+    bool operator == (const Edge& rhs) const {
+        return  from == rhs.from &&
+                weight == rhs.weight &&
+                to == rhs.to;
+    }
 };
 
 

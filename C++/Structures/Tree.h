@@ -25,6 +25,7 @@ class Tree {
         int root() const;
         int vertices() const;
         int parent(int v) const;
+        int total_weight(const Graph& G) const;
         std::vector<int> children(int v) const;
 
     private:

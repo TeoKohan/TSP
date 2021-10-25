@@ -36,14 +36,37 @@ std::vector<int> Tree::children(int v) const {
     return C[v];
 }
 
+/** @param G a subyacent Graph G of the Tree.
+ * @return Returns the sum of the weights in G of all the edges in the tree.  
+ */
+int Tree::total_weight(const Graph& G) const {
+    int weight = 0;
+    std::queue<int> Q;
+    Q.push(R);
+
+    while (!Q.empty()) {
+        for (int c : C[Q.front()]) {
+            weight += G[Q.front()][c];
+            Q.push(c);
+        }
+        Q.pop();
+    }
+
+    return weight;
+}
+
+#define ARROW " --> "
+#define AND " & "
+
 std::ostream& operator<< (std::ostream& os, const Tree& T) {
     std::cout << "v: " << T.V << ", r: " << T.R << std::endl;
     for(int i = 0; i < T.vertices(); ++i) {
-        std::cout << "v: " << i;
-        std::cout << " p: " << (T.parent(i) == -1 ? "root" : std::to_string(T.parent(i))) << " c: ";
-        for(int j : T.children(i))
-            std::cout << j << ", ";
-        std::cout << "end" << std::endl;
+        if (!T.children(i).size())
+            continue;
+        std::cout << i << ARROW;
+        for(int j = 0; j < T.children(i).size(); ++j)
+            std::cout << (j == 0 ? "" : AND) << T.children(i)[j];
+        std::cout << std::endl;
     }
 
     return os;
