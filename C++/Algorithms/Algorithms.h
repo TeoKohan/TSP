@@ -36,11 +36,6 @@ struct Solution {
         return sum;
     }
 
-    bool repeats () {
-        std::set<int> A(path.begin(), path.end());
-        return A.size() != path.size();
-    }
-
     void center(int k = 0) {
         int i = 0;
         while (path[i] != k)
@@ -60,7 +55,11 @@ namespace Algorithm {
     Solution MST(int R, const Graph& G);
     Solution MST_all(const Graph& G);
 
+    Solution two_opt (Solution& S, int a, int b, int c, int d, const Graph& G);
+    Solution& two_opt(Solution& S, const Graph& G);
     Solution local_search(int R, const Graph& G);
+
+    Solution tabu_search(int R, const Graph& G, std::function<Solution(int, const Graph&)> f);
 }
 
 #endif//ALGO_H

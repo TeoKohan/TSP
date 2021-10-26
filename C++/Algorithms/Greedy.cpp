@@ -14,7 +14,7 @@ namespace Algorithm {
             int min = INF;
             for (int j = 0; j < G.vertices(); ++j)
                 if (!V.count(j))
-                    if (min == INF || G[i][j] < min) {
+                    if ((min == INF && G[i][j] != INF) || G[i][j] < min) {
                         min = G[i][j];
                         v = j;
                     }
