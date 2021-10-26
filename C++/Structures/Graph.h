@@ -27,6 +27,10 @@ struct Edge {
                 weight == rhs.weight &&
                 to == rhs.to;
     }
+
+    bool operator != (const Edge& rhs) const {
+        return  !(*this == rhs);
+    }
 };
 
 

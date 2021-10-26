@@ -1,3 +1,4 @@
+#include <assert.h>
 #include"Algorithms.h"
 
 namespace Algorithm {
@@ -35,19 +36,20 @@ namespace Algorithm {
                 S.weight += G[u][v];
             }
             S.weight += G[*S.path.begin()][*S.path.rbegin()];
-
+            assert(S.weight == S.reevaluate(G));
             return S;   
         }
     }
 
-    Solution greedy(const Graph& G) {
-            return greedy(0, G, min);   
+    Solution greedy(int R, const Graph& G) {
+            return greedy(R, G, min);   
     }
 
     Solution greedy_all(const Graph& G) {
         Solution S(INF, Path());
         for (int i = 0; i < G.vertices(); ++i)
-            S = S.weight == INF ? greedy(i, G, min) : std::min(S, greedy(i, G, min)); 
+            S = S.weight == INF ? greedy(i, G, min) : std::min(S, greedy(i, G, min));
+        S.center();
         return S;
     }
 }

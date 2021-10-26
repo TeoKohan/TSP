@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/firewill/Desktop/TSP/C++/Algorithms/Auxiliary/DFS.cpp" "/home/firewill/Desktop/TSP/Build/CMakeFiles/TSPlib.dir/C++/Algorithms/Auxiliary/DFS.cpp.o"
   "/home/firewill/Desktop/TSP/C++/Algorithms/Auxiliary/Prim.cpp" "/home/firewill/Desktop/TSP/Build/CMakeFiles/TSPlib.dir/C++/Algorithms/Auxiliary/Prim.cpp.o"
   "/home/firewill/Desktop/TSP/C++/Algorithms/Greedy.cpp" "/home/firewill/Desktop/TSP/Build/CMakeFiles/TSPlib.dir/C++/Algorithms/Greedy.cpp.o"
+  "/home/firewill/Desktop/TSP/C++/Algorithms/LocalSearch.cpp" "/home/firewill/Desktop/TSP/Build/CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o"
   "/home/firewill/Desktop/TSP/C++/Algorithms/MST.cpp" "/home/firewill/Desktop/TSP/Build/CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o"
   "/home/firewill/Desktop/TSP/C++/IO/IO.cpp" "/home/firewill/Desktop/TSP/Build/CMakeFiles/TSPlib.dir/C++/IO/IO.cpp.o"
   "/home/firewill/Desktop/TSP/C++/Structures/Graph.cpp" "/home/firewill/Desktop/TSP/Build/CMakeFiles/TSPlib.dir/C++/Structures/Graph.cpp.o"

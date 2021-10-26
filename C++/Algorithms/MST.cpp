@@ -1,3 +1,4 @@
+#include<assert.h>
 #include"Algorithms.h"
 
 namespace Algorithm {
@@ -28,7 +29,8 @@ namespace Algorithm {
     Solution MST_all(const Graph& G) {
         Solution S(INF, Path());
         for (int i = 0; i < G.vertices(); ++i)
-            S = S.weight == INF ? MST(i, G) : std::min(S, MST(i, G)); 
+            S = S.weight == INF ? MST(i, G) : std::min(S, MST(i, G));
+        assert(S.weight == S.reevaluate(G));
         return S;
     }
 }

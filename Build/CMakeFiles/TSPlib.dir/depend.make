@@ -18,6 +18,11 @@ CMakeFiles/TSPlib.dir/C++/Algorithms/Greedy.cpp.o: ../C++/Algorithms/Greedy.cpp
 CMakeFiles/TSPlib.dir/C++/Algorithms/Greedy.cpp.o: ../C++/Structures/Graph.h
 CMakeFiles/TSPlib.dir/C++/Algorithms/Greedy.cpp.o: ../C++/Structures/Tree.h
 
+CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o: ../C++/Algorithms/Algorithms.h
+CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o: ../C++/Algorithms/LocalSearch.cpp
+CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o: ../C++/Structures/Graph.h
+CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o: ../C++/Structures/Tree.h
+
 CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o: ../C++/Algorithms/Algorithms.h
 CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o: ../C++/Algorithms/MST.cpp
 CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o: ../C++/Structures/Graph.h

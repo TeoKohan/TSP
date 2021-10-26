@@ -18,6 +18,11 @@ CMakeFiles/TSPlib.dir/C++/Algorithms/Greedy.cpp.o
  /home/firewill/Desktop/TSP/C++/Algorithms/Greedy.cpp
  /home/firewill/Desktop/TSP/C++/Structures/Graph.h
  /home/firewill/Desktop/TSP/C++/Structures/Tree.h
+CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o
+ /home/firewill/Desktop/TSP/C++/Algorithms/Algorithms.h
+ /home/firewill/Desktop/TSP/C++/Algorithms/LocalSearch.cpp
+ /home/firewill/Desktop/TSP/C++/Structures/Graph.h
+ /home/firewill/Desktop/TSP/C++/Structures/Tree.h
 CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o
  /home/firewill/Desktop/TSP/C++/Algorithms/Algorithms.h
  /home/firewill/Desktop/TSP/C++/Algorithms/MST.cpp

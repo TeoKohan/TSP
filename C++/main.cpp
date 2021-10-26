@@ -20,19 +20,19 @@ int main(int argc, char* argv[]) {
     std::string normal = "../Test/Python/complete-graph-normal-dist/";
     std::string random = "../Test/Python/complete-graph-random-weight/";
     
-    IO test("../Test/Python/");
+    IO reader(random);
 
-    int winner[3] = {0, 0, 0};
+    int winner[] = {0, 0, 0, 0};
 
-    for (int i = 1; i <= 1; ++i) {
-    std::string path = "prim-case2";
-    // path += std::to_string(i);
+    for (int i = 1; i <= 200; ++i) {
+    std::string path = "WEIGHT-1-to-1000-n-";
+    path += std::to_string(i);
     path += ".txt";
-    G = test.read(path);
+    G = reader.read(path);
     
     std::cout << "n: " << i << "   MST: " << Tree::Prim(0, G).total_weight(G) << std::endl;
     
-    S = Algorithm::greedy(G);
+    S = Algorithm::greedy(0, G);
     std::cout << "greedy - ROOTED " << S.weight << std::endl;
     
     int w = 0;
@@ -46,6 +46,10 @@ int main(int argc, char* argv[]) {
     std::cout << "MST - ROOTED " << S.weight << std::endl;
     if (S.weight < min) {w = 2; min = S.weight;}
 
+    S = Algorithm::local_search(0, G);
+    std::cout << "Lsearch - ROOTED " << S << std::endl;
+    if (S.weight < min) {w = 3; min = S.weight;}
+
     std::cout << "-----------------" << std::endl;
     
     winner[w]++;
@@ -53,7 +57,10 @@ int main(int argc, char* argv[]) {
     //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 
-    std::cout << std::endl << "Greed: " << winner[0] << "  Greed All: " << winner[1] << "  MST: " << winner[2] << std::endl; 
+    std::cout << std::endl << "Greed: " << winner[0] << 
+                              "  Greed All: " << winner[1] << 
+                              "  MST: " << winner[2] <<
+                              "  LS: " << winner[3] << std::endl; 
     std::cout << "-----------------" << std::endl;
 
     return 1;

@@ -29,24 +29,38 @@ struct Solution {
                (weight == rhs.weight && path.size() <= rhs.path.size());
     }
     
-    Solution center() {
+    int reevaluate (const Graph& G) {
+        int sum = 0;
+        for (int i = 0; i < path.size(); ++i)
+            sum += G[path[i]][path[(i+1) % path.size()]];
+        return sum;
+    }
+
+    bool repeats () {
+        std::set<int> A(path.begin(), path.end());
+        return A.size() != path.size();
+    }
+
+    void center(int k = 0) {
         int i = 0;
-        while (path[i] != 0)
+        while (path[i] != k)
             i++;
         Path P;
         P.reserve(path.size());
-        P.insert(P.end(), path.cbegin()+i, path.cend());     // 0 to end
-        P.insert(P.end(), path.cbegin(), path.cbegin()+i);   // begin to 0
-        return {weight, P};
+        P.insert(P.end(), path.cbegin()+i, path.cend());     //k to end
+        P.insert(P.end(), path.cbegin(), path.cbegin()+i);   //begin to k
+        path = P;
     }
 }; 
 
 namespace Algorithm {
-    Solution greedy(const Graph& G);
+    Solution greedy(int R, const Graph& G);
     Solution greedy_all(const Graph& G);
 
     Solution MST(int R, const Graph& G);
     Solution MST_all(const Graph& G);
+
+    Solution local_search(int R, const Graph& G);
 }
 
 #endif//ALGO_H

@@ -34,7 +34,7 @@ def complete_graph_random_weight(k, floor, ceil):
     int ceil -- a number indicating the maximum possible weight and edge can have. \n
     """ 
 
-    for size in range(k, k+1):
+    for size in range(1, k+1):
         edges = [f"{i} {j} {random.randint(floor, ceil)}" for i in range(size) for j in range(i + 1, size)]
         save_instance("complete-graph-random-weight", f"WEIGHT-{floor}-to-{ceil}-n-{size}", edges, size)
 
@@ -64,5 +64,5 @@ def complete_graph_limited_values(k, values):
         save_instance("complete-graph-limited-values", f"WEIGHT-limited-n-{size}", edges, size)
 
 
-complete_graph_limited_values(200, [1, 2, 1000])
+complete_graph_random_weight(200, 1, 1000)
 

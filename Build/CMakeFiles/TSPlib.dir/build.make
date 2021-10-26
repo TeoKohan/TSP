@@ -180,6 +180,19 @@ CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/firewill/Desktop/TSP/C++/Algorithms/MST.cpp -o CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.s
 
+CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o: CMakeFiles/TSPlib.dir/flags.make
+CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o: ../C++/Algorithms/LocalSearch.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/firewill/Desktop/TSP/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o -c /home/firewill/Desktop/TSP/C++/Algorithms/LocalSearch.cpp
+
+CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/firewill/Desktop/TSP/C++/Algorithms/LocalSearch.cpp > CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.i
+
+CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/firewill/Desktop/TSP/C++/Algorithms/LocalSearch.cpp -o CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.s
+
 # Object files for target TSPlib
 TSPlib_OBJECTS = \
 "CMakeFiles/TSPlib.dir/C++/Structures/Graph.cpp.o" \
@@ -189,7 +202,8 @@ TSPlib_OBJECTS = \
 "CMakeFiles/TSPlib.dir/C++/Algorithms/Auxiliary/DFS.cpp.o" \
 "CMakeFiles/TSPlib.dir/C++/Algorithms/Auxiliary/Prim.cpp.o" \
 "CMakeFiles/TSPlib.dir/C++/Algorithms/Greedy.cpp.o" \
-"CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o"
+"CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o" \
+"CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o"
 
 # External object files for target TSPlib
 TSPlib_EXTERNAL_OBJECTS =
@@ -202,9 +216,10 @@ libTSPlib.a: CMakeFiles/TSPlib.dir/C++/Algorithms/Auxiliary/DFS.cpp.o
 libTSPlib.a: CMakeFiles/TSPlib.dir/C++/Algorithms/Auxiliary/Prim.cpp.o
 libTSPlib.a: CMakeFiles/TSPlib.dir/C++/Algorithms/Greedy.cpp.o
 libTSPlib.a: CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o
+libTSPlib.a: CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o
 libTSPlib.a: CMakeFiles/TSPlib.dir/build.make
 libTSPlib.a: CMakeFiles/TSPlib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/firewill/Desktop/TSP/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libTSPlib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/firewill/Desktop/TSP/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library libTSPlib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/TSPlib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TSPlib.dir/link.txt --verbose=$(VERBOSE)
 

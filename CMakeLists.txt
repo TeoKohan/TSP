@@ -17,6 +17,7 @@ add_library(TSPlib STATIC
 	C++/Algorithms/Auxiliary/Prim.cpp
 	C++/Algorithms/Greedy.cpp
 	C++/Algorithms/MST.cpp
+	C++/Algorithms/LocalSearch.cpp
 	)
 target_include_directories(TSPlib PUBLIC
 	C++/IO

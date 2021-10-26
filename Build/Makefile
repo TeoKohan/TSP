@@ -263,6 +263,33 @@ C++/Algorithms/Greedy.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/Algorithms/Greedy.cpp.s
 .PHONY : C++/Algorithms/Greedy.cpp.s
 
+C++/Algorithms/LocalSearch.o: C++/Algorithms/LocalSearch.cpp.o
+
+.PHONY : C++/Algorithms/LocalSearch.o
+
+# target to build an object file
+C++/Algorithms/LocalSearch.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o
+.PHONY : C++/Algorithms/LocalSearch.cpp.o
+
+C++/Algorithms/LocalSearch.i: C++/Algorithms/LocalSearch.cpp.i
+
+.PHONY : C++/Algorithms/LocalSearch.i
+
+# target to preprocess a source file
+C++/Algorithms/LocalSearch.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.i
+.PHONY : C++/Algorithms/LocalSearch.cpp.i
+
+C++/Algorithms/LocalSearch.s: C++/Algorithms/LocalSearch.cpp.s
+
+.PHONY : C++/Algorithms/LocalSearch.s
+
+# target to generate assembly for a file
+C++/Algorithms/LocalSearch.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.s
+.PHONY : C++/Algorithms/LocalSearch.cpp.s
+
 C++/Algorithms/MST.o: C++/Algorithms/MST.cpp.o
 
 .PHONY : C++/Algorithms/MST.o
@@ -420,6 +447,9 @@ help:
 	@echo "... C++/Algorithms/Greedy.o"
 	@echo "... C++/Algorithms/Greedy.i"
 	@echo "... C++/Algorithms/Greedy.s"
+	@echo "... C++/Algorithms/LocalSearch.o"
+	@echo "... C++/Algorithms/LocalSearch.i"
+	@echo "... C++/Algorithms/LocalSearch.s"
 	@echo "... C++/Algorithms/MST.o"
 	@echo "... C++/Algorithms/MST.i"
 	@echo "... C++/Algorithms/MST.s"
