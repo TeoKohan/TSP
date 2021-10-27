@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/TSP.dir/C++/main.cpp.o -o TSP  libTSPlib.a 
+/usr/bin/c++ -g CMakeFiles/TSP.dir/C++/main.cpp.o -o TSP  libTSPlib.a 

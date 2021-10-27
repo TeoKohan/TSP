@@ -45,7 +45,7 @@ namespace Algorithm {
             return greedy(R, G, min);   
     }
 
-    Solution greedy_all(const Graph& G) {
+    Solution greedy_all(int R, const Graph& G) {
         Solution S(INF, Path());
         for (int i = 0; i < G.vertices(); ++i)
             S = S.weight == INF ? greedy(i, G, min) : std::min(S, greedy(i, G, min));

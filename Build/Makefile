@@ -371,6 +371,33 @@ C++/IO/IO.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/IO/IO.cpp.s
 .PHONY : C++/IO/IO.cpp.s
 
+C++/IO/Time.o: C++/IO/Time.cpp.o
+
+.PHONY : C++/IO/Time.o
+
+# target to build an object file
+C++/IO/Time.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/IO/Time.cpp.o
+.PHONY : C++/IO/Time.cpp.o
+
+C++/IO/Time.i: C++/IO/Time.cpp.i
+
+.PHONY : C++/IO/Time.i
+
+# target to preprocess a source file
+C++/IO/Time.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/IO/Time.cpp.i
+.PHONY : C++/IO/Time.cpp.i
+
+C++/IO/Time.s: C++/IO/Time.cpp.s
+
+.PHONY : C++/IO/Time.s
+
+# target to generate assembly for a file
+C++/IO/Time.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/IO/Time.cpp.s
+.PHONY : C++/IO/Time.cpp.s
+
 C++/Structures/Graph.o: C++/Structures/Graph.cpp.o
 
 .PHONY : C++/Structures/Graph.o
@@ -486,6 +513,9 @@ help:
 	@echo "... C++/IO/IO.o"
 	@echo "... C++/IO/IO.i"
 	@echo "... C++/IO/IO.s"
+	@echo "... C++/IO/Time.o"
+	@echo "... C++/IO/Time.i"
+	@echo "... C++/IO/Time.s"
 	@echo "... C++/Structures/Graph.o"
 	@echo "... C++/Structures/Graph.i"
 	@echo "... C++/Structures/Graph.s"

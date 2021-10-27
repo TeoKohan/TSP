@@ -5,64 +5,31 @@ import numpy as np
 os.chdir('..')
 curpath = os.path.abspath(os.curdir)
 
-def save_instance(dataset, instance_name, edges, n):
-    new_path = curpath + f"/Test/Python/{dataset}"
+def save_instance(function, g_range):
+    new_path = curpath + f"/Test/Python/"
     if not os.path.exists(new_path):
         os.mkdir(new_path)
-    with open(new_path + f"/{instance_name}.txt", "w") as f:
-        print(n, len(edges), file=f)
-        for e in edges:
-            print(e, file=f, end="\n")
+    with open(new_path + f"/{function.__name__}-{g_range[0]}-{g_range[-1]}.txt", "w") as f:
+        print(len(g_range), file=f, end="\n") # amount of graphs in file
+        for g in [function(i) for i in g_range]:
+            for e in g:
+                print(e, file=f, end="\n")
 
+def com_graph_rand(k, floor = 0, ceil = 100):
+        G = [f"{i} {j} {random.randint(floor, ceil)}" for i in range(k) for j in range(i + 1, k)]
+        G.insert(0, f"{k} {k*(k-1)//2}")
+        return G
+  
+def com_graph_normal_dist(k, mu, sigma):
+    G = [f"{i} {j} {int(abs(np.random.normal(mu, sigma))+1)}" for i in range(size) for j in range(i + 1, size)]
+    G.insert(0, f"{k} {k*(k-1)//2}")
+    return G
 
-def complete_graph_weight_1(k):
-    """ Generates k i-complete graphs (i from 2 to k) with all it's edge weights set to 1.
+def com_graph_limited_values(k, values):
+    G = [f"{i} {j} {random.choice(values)}" for i in range(size) for j in range(i + 1, size)]
+    G.insert(0, f"{k} {k*(k-1)//2}")
+    return G
 
-    Arguments: \n
-    int k -- a number indicating the amount of vertices.
-    """ 
-    for size in range(2, k+1):
-        edges = [f"{i} {j} 1" for i in range(size) for j in range(i + 1, size)]
-        save_instance("complete-graph-weight-1", f"WEIGHT-1-n-{size}", edges, size)
-
-def complete_graph_random_weight(k, floor, ceil):
-    """ Generates k i-complete graphs (i from 2 to k) with random edge weights, between floor and ceil.
-
-    Arguments: \n
-    int k -- a number indicating the amount of vertices. \n
-    int floor -- a number indicating the minimun possible weight and edge can have.\n
-    int ceil -- a number indicating the maximum possible weight and edge can have. \n
-    """ 
-
-    for size in range(0, k+1, 100):
-        edges = [f"{i} {j} {random.randint(floor, ceil)}" for i in range(size) for j in range(i + 1, size)]
-        save_instance("complete-graph-random-weight", f"WEIGHT-{floor}-to-{ceil}-n-{size}", edges, size)
-
-def complete_graph_normal_dist(k, mu, sigma):
-    """ Generates k i-complete graphs (i from 2 to k) with normally-distributed {N(mu, sigma)} edge weights.
-
-    Arguments: \n
-    int k -- a number indicating the amount of vertices. \n
-    int mu -- a number indicating the mean of the normal distribution.\n
-    int sigma -- a number indicating the variance of the normal distribution. \n
-    """ 
-
-    for size in range(2, k+1):
-        edges = [f"{i} {j} {int(abs(np.random.normal(mu, sigma))+1)}" for i in range(size) for j in range(i + 1, size)]
-        save_instance("complete-graph-normal-dist", f"WEIGHT-mu{mu}-sigma-{sigma}-n-{size}", edges, size)
-
-def complete_graph_limited_values(k, values):
-    """ Generates k i-complete graphs (i from 2 to k) with edge weights randomly chosen from values, a given list.
-
-    Arguments: \n
-    int k -- a number indicating the amount of vertices. \n
-    list(int) values -- a list containing the possible values the edge weights can have.\n
-    """ 
-
-    for size in range(2, k+1):
-        edges = [f"{i} {j} {random.choice(values)}" for i in range(size) for j in range(i + 1, size)]
-        save_instance("complete-graph-limited-values", f"WEIGHT-limited-n-{size}", edges, size)
-
-
-complete_graph_random_weight(1000, 1, 1001)
+save_instance(com_graph_rand, range(1, 101))
+#complete_graph_weight_1(11)
 

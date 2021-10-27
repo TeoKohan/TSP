@@ -1,82 +1,65 @@
 #include<assert.h>
+#include<algorithm>
 
 #include "Structures/Graph.h"
 #include "Structures/Tree.h"
 
 #include "IO/IO.h"
-#include <iostream>
+#include "IO/Time.h"
 
 #include "Algorithms/Algorithms.h"
 
-#include <chrono>
-#include <thread>
+#include <iostream>
+#include <vector>
+#include <set>
+#include <map>
 
-#include<string>
-#include<vector>
-#include<set>
+#define INF -1
+
+std::string p_limited = "complete-graph-limited-values/";
+std::string p_normal  = "complete-graph-normal-dist/";
+std::string p_random  = "complete-graph-random-weight/";
 
 int main(int argc, char* argv[]) {
     Solution S;
     Graph G;
-    std::string limited = "complete-graph-limited-values/";
-    std::string normal = "complete-graph-normal-dist/";
-    std::string random = "complete-graph-random-weight/";
+    
     
     IO reader("../Test/Python/");
     
-    int winner[] = {0, 0, 0, 0};
+    struct TSPName {
+        std::string name;
+        TSP algorithm;
+    };
 
-    for (int i = 100; i <= 1000; i += 100) {
-    std::string path = random;
-    path += "WEIGHT-1-to-1001-n-";
-    path += std::to_string(i);
-    path += ".txt";
-    G = reader.read(path);
-    
-    //std::cout << "n: " << i << "   MST: " << Tree::Prim(0, G).total_weight(G) << std::endl;
+    std::vector<TSPName> fs = 
+    {{"greedy", Algorithm::greedy}, {"MST", Algorithm::MST},
+     {"local search", Algorithm::local_search}, {"tabu", Algorithm::tabu_search}};
+    std::map<std::string, int> winner_count;
 
-    
-
-    S = Algorithm::greedy(0, G);
-    std::cout << "greedy - ROOTED " << S.weight << std::endl;
-    
-    S = Algorithm::tabu_search(0, G, Algorithm::local_search);
-    std::cout << "tabu - ROOTED " << S.weight << std::endl;
-
-    int w = 0;
-    int min = S.weight;
-
-    // S = Algorithm::greedy_all(G);
-    // std::cout << "greedy - ALL " << S.weight << std::endl;
-    // if (S.weight < min) {w = 1; min = S.weight;}
-
-    // S = Algorithm::MST(0, G); 
-    // std::cout << "MST - ROOTED " << S.weight << std::endl;
-    // if (S.weight < min) {w = 2; min = S.weight;}
-
-    S = Algorithm::local_search(0, G);
-    std::cout << "Lsearch - ROOTED " << S.weight << std::endl;
-    if (S.weight < min) {w = 3; min = S.weight;}
-
-    return 1;
-
-    // S = Algorithm::tabu_search(0, G, Algorithm::greedy);
-    // std::cout << "Tabu - ROOTED " << S.weight << std::endl;
-    // if (S.weight < min) {w = 3; min = S.weight;}
-
-
-    std::cout << "-----------------" << std::endl;
-    
-    winner[w]++;
-
-    //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    auto GS = reader.read("com_graph_rand-1-100.txt");
+    std::cout << "=====|=====|=====" << std::endl;
+    for (const auto& G : GS) {
+        int min = INF;
+        std::string min_n = fs[0].name;
+        std::cout << "vertices: " << G.vertices() << std::endl;
+        for (const auto& f : fs) {
+            auto ST = Time::run_function(0, G, f.algorithm);
+            if (min == INF || ST.result.weight < min) {
+                min = ST.result.weight;
+                min_n = f.name;
+            }
+            std::cout << f.name << " - " << ST.result.weight << " - " << ST.time << std::endl;
+        }
+        std::cout << "=====|=====|=====" << std::endl;
+        ++winner_count[min_n];
     }
 
-    std::cout << std::endl << "Greed: " << winner[0] << 
-                              "  Greed All: " << winner[1] << 
-                              "  MST: " << winner[2] <<
-                              "  LS: " << winner[3] << std::endl; 
-    std::cout << "-----------------" << std::endl;
+    for (auto o : winner_count)
+    std::cout << o.first << ": " << o.second << "  ";
+    std::cout << std::endl;
+    auto W = (*std::min_element(winner_count.begin(), winner_count.end()));
+    std::cout << "winner: " << W.first << " with " << W.second << " wins." << std::endl;
 
     return 1;
 }

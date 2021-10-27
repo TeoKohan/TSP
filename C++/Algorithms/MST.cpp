@@ -13,7 +13,6 @@ namespace Algorithm {
         traverse = [&](int u) {
             for (int v : T.children(u)) {
                 S.weight += G[*S.path.rbegin()][v];
-                //std::cout << "(" << *S.path.rbegin() << ", " << G[*S.path.rbegin()][v] << ", " << v << ")" << std::endl;
                 S.path.push_back(v);
                 traverse(v);
             }
@@ -21,12 +20,11 @@ namespace Algorithm {
 
         traverse(R);
         S.weight += G[*S.path.rbegin()][R];
-        //std::cout << "(" << *S.path.rbegin()<< ", " << G[*S.path.rbegin()][R] << ", " << R << ")" << std::endl;
 
         return S;
     }
 
-    Solution MST_all(const Graph& G) {
+    Solution MST_all(int R, const Graph& G) {
         Solution S(INF, Path());
         for (int i = 0; i < G.vertices(); ++i)
             S = S.weight == INF ? MST(i, G) : std::min(S, MST(i, G));

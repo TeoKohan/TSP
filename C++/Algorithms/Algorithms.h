@@ -28,6 +28,10 @@ struct Solution {
         return weight < rhs.weight ||
                (weight == rhs.weight && path.size() <= rhs.path.size());
     }
+
+    bool operator == (const Solution& rhs) const {
+        return weight == rhs.weight && path == rhs.path;
+    }
     
     static int evaluate (const Path& P, const Graph& G) {
         int sum = 0;
@@ -48,17 +52,20 @@ struct Solution {
     }
 }; 
 
+typedef std::function<Solution(int, const Graph&)> TSP;
+
 namespace Algorithm {
     Solution greedy(int R, const Graph& G);
-    Solution greedy_all(const Graph& G);
+    Solution greedy_all(int R, const Graph& G);
 
     Solution MST(int R, const Graph& G);
-    Solution MST_all(const Graph& G);
+    Solution MST_all(int R, const Graph& G);
 
+    std::priority_queue<Solution>* two_opt_conj (Solution S, const Graph& G, int k = 1);
     Solution& two_opt(Solution& S, const Graph& G);
-    Solution local_search(int R, const Graph& G);
 
-    Solution tabu_search(int R, const Graph& G, std::function<Solution(int, const Graph&)> f);
+    Solution local_search(int R, const Graph& G);
+    Solution tabu_search(int R, const Graph& G);
 }
 
 #endif//ALGO_H

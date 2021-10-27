@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/firewill/Desktop/TSP/C++/IO -I/home/firewill/Desktop/TSP/C++/Structures -I/home/firewill/Desktop/TSP/C++/Algorithms -I/home/firewill/Desktop/TSP/C++/Algorithms/Auxiliary
 
-CXX_FLAGS = -std=gnu++11
+CXX_FLAGS = -g -std=gnu++11
 

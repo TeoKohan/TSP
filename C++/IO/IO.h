@@ -9,8 +9,9 @@
 class IO {
     public:
         IO(std::string path);
-        Graph read(const std::string& filename);
+        std::vector<Graph> read(const std::string& filename);
         std::string get_path();
+        // void run_test(const std::vector<Graph>& )
     private: 
         std::string path;
 };
