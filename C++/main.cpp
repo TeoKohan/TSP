@@ -35,12 +35,14 @@ int main(int argc, char* argv[]) {
     
     //std::cout << "n: " << i << "   MST: " << Tree::Prim(0, G).total_weight(G) << std::endl;
 
-    Algorithm::tabu_search(0, G, Algorithm::greedy);
-    return 1;
+    
 
     S = Algorithm::greedy(0, G);
     std::cout << "greedy - ROOTED " << S.weight << std::endl;
     
+    S = Algorithm::tabu_search(0, G, Algorithm::local_search);
+    std::cout << "tabu - ROOTED " << S.weight << std::endl;
+
     int w = 0;
     int min = S.weight;
 
@@ -55,6 +57,8 @@ int main(int argc, char* argv[]) {
     S = Algorithm::local_search(0, G);
     std::cout << "Lsearch - ROOTED " << S.weight << std::endl;
     if (S.weight < min) {w = 3; min = S.weight;}
+
+    return 1;
 
     // S = Algorithm::tabu_search(0, G, Algorithm::greedy);
     // std::cout << "Tabu - ROOTED " << S.weight << std::endl;

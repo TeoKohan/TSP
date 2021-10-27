@@ -9,11 +9,11 @@
 namespace Algorithm {
 
     Solution tabu_search(int R, const Graph& G, std::function<Solution(int, const Graph&)> f) {
-  
+
         int n = G.vertices();
         matrix<int> aspiration (n, std::vector<int>(n)); // on edges
         std::queue<Solution> Q;
-        std::vector<int> apparitions;
+        std::vector<int> apparitions(n);
 
         std::function<int(const Path&)> fitness =
         [&] (const Path& P) {
@@ -23,6 +23,9 @@ namespace Algorithm {
             for (int i = 0; i < n; ++i) {
                 int j = (i+1) % n;
                 fitness += G[P[i]][P[j]] + aspiration[P[i]][P[j]] - apparitions[P[i]];
+                //std::cout << "(" << i << ", " << j << ")" << std::endl;
+                //Solution S = {0, P};
+                //std::cout << S << std::endl;
             }
 
             return fitness;
@@ -45,9 +48,10 @@ namespace Algorithm {
             for (int i = 0; i < apparitions.size(); ++i)
                 sorted[i] = i;
             
-            
-            std::sort(sorted.begin(), sorted.end(), least_apparitions);
+            Solution R = {Solution::evaluate(sorted, G), sorted};
 
+            std::sort(sorted.begin(), sorted.end(), least_apparitions);
+            R = {Solution::evaluate(sorted, G), sorted};
             return {Solution::evaluate(sorted, G), sorted};
         };
 
@@ -77,17 +81,18 @@ namespace Algorithm {
         Solution actual = best;
 
         std::vector<Solution> SS;
-        int iterations = 5000;
+        int iterations = 50000;
         while (iterations--) {
             SS = {Algorithm::two_opt(actual, G), least_traveled(apparitions)};
-            actual = *std::min_element(SS.begin(), SS.end(), least_fit);
+            actual = *std::max_element(SS.begin(), SS.end(), least_fit);
+            //std::cout << actual.weight << "   " << best.weight << std::endl;
             if (actual.weight <= best.weight)
                 best = actual;
             register_solution(actual);
         }
-        
-        // %N -%N+random %LV -> vector[vector[Swaps]]
 
+        // %N -%N+random %LV -> vector[vector[Swaps]]
+        
         return best;
     }
 }
