@@ -36,7 +36,7 @@ namespace Algorithm {
                 S.weight += G[u][v];
             }
             S.weight += G[*S.path.begin()][*S.path.rbegin()];
-            assert(S.weight == S.reevaluate(G));
+            assert(S.weight == S.evaluate(S.path, G));
             return S;   
         }
     }

@@ -28,9 +28,9 @@ CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o
  /home/firewill/Desktop/TSP/C++/Algorithms/MST.cpp
  /home/firewill/Desktop/TSP/C++/Structures/Graph.h
  /home/firewill/Desktop/TSP/C++/Structures/Tree.h
-CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.o
+CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o
  /home/firewill/Desktop/TSP/C++/Algorithms/Algorithms.h
- /home/firewill/Desktop/TSP/C++/Algorithms/Taboo.cpp
+ /home/firewill/Desktop/TSP/C++/Algorithms/Tabu.cpp
  /home/firewill/Desktop/TSP/C++/Structures/Graph.h
  /home/firewill/Desktop/TSP/C++/Structures/Tree.h
 CMakeFiles/TSPlib.dir/C++/IO/IO.cpp.o

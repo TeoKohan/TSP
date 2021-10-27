@@ -8,9 +8,6 @@
 #include<stack>
 #include<vector>
 
-typedef std::vector<std::vector<int>> matrix;
-#define matrix(n, m, v) matrix(n, std::vector<int>(m, v))
-
 /**A data structure holding a Tree
  * you can expect every vertex to have exactly one parent (excluding the root).
  */

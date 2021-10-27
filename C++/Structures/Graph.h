@@ -7,8 +7,8 @@
 #include<vector>
 #include<set>
 
-typedef std::vector<std::vector<int>> matrix;
-#define matrix(n, m, v) matrix(n, std::vector<int>(m, v))
+template<class T>
+using matrix = std::vector<std::vector<T>>;
 
 /**A data structure holding an Edge, that is a straight line between two points.*/
 struct Edge {
@@ -49,7 +49,7 @@ class Graph {
         
     private:
         int V;
-        matrix N;
+        matrix<int> N;
 };
 
 #endif//GRAPH_H

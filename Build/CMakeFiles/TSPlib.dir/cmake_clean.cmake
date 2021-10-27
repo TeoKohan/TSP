@@ -5,7 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/TSPlib.dir/C++/Algorithms/Greedy.cpp.o"
   "CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o"
   "CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o"
-  "CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.o"
+  "CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o"
   "CMakeFiles/TSPlib.dir/C++/IO/IO.cpp.o"
   "CMakeFiles/TSPlib.dir/C++/Structures/Graph.cpp.o"
   "CMakeFiles/TSPlib.dir/C++/Structures/Tree.cpp.o"

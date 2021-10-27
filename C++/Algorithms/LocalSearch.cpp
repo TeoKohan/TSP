@@ -7,21 +7,6 @@
 
 namespace Algorithm {
 
-    Solution two_opt (Solution& S, int a, int b, int c, int d, const Graph& G) {
-
-        Solution R = S;
-        assert(a < R.path.size() && b < R.path.size() && c < R.path.size() && d < R.path.size());
-        R.weight += (G[a][c] + G[b][d]) - (G[a][b] + G[c][d]);
-
-        if (b < c)
-            std::reverse(R.path.begin()+b, R.path.begin()+(c+1));
-        else
-            std::reverse(R.path.begin()+d, R.path.begin()+(a+1));
-
-        assert(R.weight == R.reevaluate(G));
-        return R;
-    }
-
     Solution& two_opt (Solution& S, const Graph& G) {
 
         std::function<int(int a, int b, int c, int d)> swap_weight =
@@ -49,7 +34,7 @@ namespace Algorithm {
                     c = S.path.begin();
         }
 
-        assert(S.weight == S.reevaluate(G));
+        assert(S.weight == Solution::evaluate(S.path, G));
         return S;
     }
 

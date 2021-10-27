@@ -3,12 +3,12 @@
 #define INF -1
 
 /** @return An empty Graph.*/
-Graph::Graph() : V(0), N(matrix(0, 0, INF)) { }
+Graph::Graph() : V(0), N(matrix<int>(0, std::vector<int>(0, INF))) { }
 
 /** @param V amount of vertices in graph.
  * @return An edgeless Graph of V vertices.
  */
-Graph::Graph(int V) : V(V), N(matrix(V, V, INF)) {
+Graph::Graph(int V) : V(V), N(matrix<int>(V, std::vector<int>(V, INF))) {
     for (int i = 0; i < V; ++i)
         N[i][i] = 0;
  }
@@ -17,7 +17,7 @@ Graph::Graph(int V) : V(V), N(matrix(V, V, INF)) {
  * @param E the edges in the graph.
  * @return The Graph defined by G(V, E).
  */
-Graph::Graph(int V, std::vector<Edge> E) : V(V), N(matrix(V, V, INF)) {
+Graph::Graph(int V, std::vector<Edge> E) : V(V), N(matrix<int>(V, std::vector<int>(V, INF))) {
     for (int i = 0; i < V; ++i)
         N[i][i] = 0;
     for (const Edge& e : E) {

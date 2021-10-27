@@ -29,10 +29,10 @@ struct Solution {
                (weight == rhs.weight && path.size() <= rhs.path.size());
     }
     
-    int reevaluate (const Graph& G) {
+    static int evaluate (const Path& P, const Graph& G) {
         int sum = 0;
-        for (int i = 0; i < path.size(); ++i)
-            sum += G[path[i]][path[(i+1) % path.size()]];
+        for (int i = 0; i < P.size(); ++i)
+            sum += G[P[i]][P[(i+1) % P.size()]];
         return sum;
     }
 
@@ -42,8 +42,8 @@ struct Solution {
             i++;
         Path P;
         P.reserve(path.size());
-        P.insert(P.end(), path.cbegin()+i, path.cend());     //k to end
-        P.insert(P.end(), path.cbegin(), path.cbegin()+i);   //begin to k
+        P.insert(P.end(), path.cbegin()+i, path.cend());     //k     -> end
+        P.insert(P.end(), path.cbegin(), path.cbegin()+i);   //begin -> k
         path = P;
     }
 }; 
@@ -55,7 +55,6 @@ namespace Algorithm {
     Solution MST(int R, const Graph& G);
     Solution MST_all(const Graph& G);
 
-    Solution two_opt (Solution& S, int a, int b, int c, int d, const Graph& G);
     Solution& two_opt(Solution& S, const Graph& G);
     Solution local_search(int R, const Graph& G);
 

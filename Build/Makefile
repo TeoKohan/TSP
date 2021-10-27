@@ -317,32 +317,32 @@ C++/Algorithms/MST.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.s
 .PHONY : C++/Algorithms/MST.cpp.s
 
-C++/Algorithms/Taboo.o: C++/Algorithms/Taboo.cpp.o
+C++/Algorithms/Tabu.o: C++/Algorithms/Tabu.cpp.o
 
-.PHONY : C++/Algorithms/Taboo.o
+.PHONY : C++/Algorithms/Tabu.o
 
 # target to build an object file
-C++/Algorithms/Taboo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.o
-.PHONY : C++/Algorithms/Taboo.cpp.o
+C++/Algorithms/Tabu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o
+.PHONY : C++/Algorithms/Tabu.cpp.o
 
-C++/Algorithms/Taboo.i: C++/Algorithms/Taboo.cpp.i
+C++/Algorithms/Tabu.i: C++/Algorithms/Tabu.cpp.i
 
-.PHONY : C++/Algorithms/Taboo.i
+.PHONY : C++/Algorithms/Tabu.i
 
 # target to preprocess a source file
-C++/Algorithms/Taboo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.i
-.PHONY : C++/Algorithms/Taboo.cpp.i
+C++/Algorithms/Tabu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.i
+.PHONY : C++/Algorithms/Tabu.cpp.i
 
-C++/Algorithms/Taboo.s: C++/Algorithms/Taboo.cpp.s
+C++/Algorithms/Tabu.s: C++/Algorithms/Tabu.cpp.s
 
-.PHONY : C++/Algorithms/Taboo.s
+.PHONY : C++/Algorithms/Tabu.s
 
 # target to generate assembly for a file
-C++/Algorithms/Taboo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.s
-.PHONY : C++/Algorithms/Taboo.cpp.s
+C++/Algorithms/Tabu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TSPlib.dir/build.make CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.s
+.PHONY : C++/Algorithms/Tabu.cpp.s
 
 C++/IO/IO.o: C++/IO/IO.cpp.o
 
@@ -480,9 +480,9 @@ help:
 	@echo "... C++/Algorithms/MST.o"
 	@echo "... C++/Algorithms/MST.i"
 	@echo "... C++/Algorithms/MST.s"
-	@echo "... C++/Algorithms/Taboo.o"
-	@echo "... C++/Algorithms/Taboo.i"
-	@echo "... C++/Algorithms/Taboo.s"
+	@echo "... C++/Algorithms/Tabu.o"
+	@echo "... C++/Algorithms/Tabu.i"
+	@echo "... C++/Algorithms/Tabu.s"
 	@echo "... C++/IO/IO.o"
 	@echo "... C++/IO/IO.i"
 	@echo "... C++/IO/IO.s"

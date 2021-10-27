@@ -193,18 +193,18 @@ CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/firewill/Desktop/TSP/C++/Algorithms/LocalSearch.cpp -o CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.s
 
-CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.o: CMakeFiles/TSPlib.dir/flags.make
-CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.o: ../C++/Algorithms/Taboo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/firewill/Desktop/TSP/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.o -c /home/firewill/Desktop/TSP/C++/Algorithms/Taboo.cpp
+CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o: CMakeFiles/TSPlib.dir/flags.make
+CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o: ../C++/Algorithms/Tabu.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/firewill/Desktop/TSP/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o -c /home/firewill/Desktop/TSP/C++/Algorithms/Tabu.cpp
 
-CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/firewill/Desktop/TSP/C++/Algorithms/Taboo.cpp > CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.i
+CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/firewill/Desktop/TSP/C++/Algorithms/Tabu.cpp > CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.i
 
-CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/firewill/Desktop/TSP/C++/Algorithms/Taboo.cpp -o CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.s
+CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/firewill/Desktop/TSP/C++/Algorithms/Tabu.cpp -o CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.s
 
 # Object files for target TSPlib
 TSPlib_OBJECTS = \
@@ -217,7 +217,7 @@ TSPlib_OBJECTS = \
 "CMakeFiles/TSPlib.dir/C++/Algorithms/Greedy.cpp.o" \
 "CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o" \
 "CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o" \
-"CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.o"
+"CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o"
 
 # External object files for target TSPlib
 TSPlib_EXTERNAL_OBJECTS =
@@ -231,7 +231,7 @@ libTSPlib.a: CMakeFiles/TSPlib.dir/C++/Algorithms/Auxiliary/Prim.cpp.o
 libTSPlib.a: CMakeFiles/TSPlib.dir/C++/Algorithms/Greedy.cpp.o
 libTSPlib.a: CMakeFiles/TSPlib.dir/C++/Algorithms/MST.cpp.o
 libTSPlib.a: CMakeFiles/TSPlib.dir/C++/Algorithms/LocalSearch.cpp.o
-libTSPlib.a: CMakeFiles/TSPlib.dir/C++/Algorithms/Taboo.cpp.o
+libTSPlib.a: CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o
 libTSPlib.a: CMakeFiles/TSPlib.dir/build.make
 libTSPlib.a: CMakeFiles/TSPlib.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/firewill/Desktop/TSP/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library libTSPlib.a"
