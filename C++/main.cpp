@@ -9,6 +9,7 @@
 
 #include "Algorithms/Algorithms.h"
 
+#include <functional>
 #include <iostream>
 #include <vector>
 #include <set>
@@ -24,15 +25,9 @@ int main(int argc, char* argv[]) {
     Solution S;
     Graph G;
     
-    
     IO reader("../Test/Python/");
-    
-    struct TSPName {
-        std::string name;
-        TSP algorithm;
-    };
 
-    std::vector<TSPName> fs = 
+    std::vector<IO::TSPName> fs = 
     {{"greedy", Algorithm::greedy}, {"MST", Algorithm::MST},
      {"local search", Algorithm::local_search}, {"tabu", Algorithm::tabu_search}};
     std::map<std::string, int> winner_count;
@@ -58,7 +53,13 @@ int main(int argc, char* argv[]) {
     for (auto o : winner_count)
     std::cout << o.first << ": " << o.second << "  ";
     std::cout << std::endl;
-    auto W = (*std::min_element(winner_count.begin(), winner_count.end()));
+
+    std::function<bool(std::pair<const std::string, int>&, std::pair<const std::string, int>&)> key_comp =
+    [] (std::pair<const std::string, int>& a, std::pair<const std::string, int>& b) {
+        return a.second > b.second;
+    };
+    
+    auto W = (*std::min_element(winner_count.begin(), winner_count.end(), key_comp));
     std::cout << "winner: " << W.first << " with " << W.second << " wins." << std::endl;
 
     return 1;

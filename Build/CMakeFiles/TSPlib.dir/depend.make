@@ -33,9 +33,12 @@ CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o: ../C++/Algorithms/Tabu.cpp
 CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o: ../C++/Structures/Graph.h
 CMakeFiles/TSPlib.dir/C++/Algorithms/Tabu.cpp.o: ../C++/Structures/Tree.h
 
+CMakeFiles/TSPlib.dir/C++/IO/IO.cpp.o: ../C++/Algorithms/Algorithms.h
 CMakeFiles/TSPlib.dir/C++/IO/IO.cpp.o: ../C++/IO/IO.cpp
 CMakeFiles/TSPlib.dir/C++/IO/IO.cpp.o: ../C++/IO/IO.h
+CMakeFiles/TSPlib.dir/C++/IO/IO.cpp.o: ../C++/IO/Time.h
 CMakeFiles/TSPlib.dir/C++/IO/IO.cpp.o: ../C++/Structures/Graph.h
+CMakeFiles/TSPlib.dir/C++/IO/IO.cpp.o: ../C++/Structures/Tree.h
 
 CMakeFiles/TSPlib.dir/C++/IO/Time.cpp.o: ../C++/Algorithms/Algorithms.h
 CMakeFiles/TSPlib.dir/C++/IO/Time.cpp.o: ../C++/IO/Time.cpp

@@ -19,14 +19,18 @@ vector
 /home/firewill/Desktop/TSP/C++/Structures/Tree.h
 
 /home/firewill/Desktop/TSP/C++/IO/IO.h
+../Structures/Graph.h
+/home/firewill/Desktop/TSP/C++/Structures/Graph.h
+Time.h
+/home/firewill/Desktop/TSP/C++/IO/Time.h
+../Algorithms/Algorithms.h
+/home/firewill/Desktop/TSP/C++/Algorithms/Algorithms.h
 iostream
 -
 fstream
 -
 string
 -
-../Structures/Graph.h
-/home/firewill/Desktop/TSP/C++/Structures/Graph.h
 
 /home/firewill/Desktop/TSP/C++/IO/Time.h
 iostream
@@ -81,6 +85,8 @@ IO/Time.h
 /home/firewill/Desktop/TSP/C++/IO/Time.h
 Algorithms/Algorithms.h
 /home/firewill/Desktop/TSP/C++/Algorithms/Algorithms.h
+functional
+-
 iostream
 -
 vector

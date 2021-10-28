@@ -21,15 +21,15 @@ def com_graph_rand(k, floor = 0, ceil = 100):
         return G
   
 def com_graph_normal_dist(k, mu, sigma):
-    G = [f"{i} {j} {int(abs(np.random.normal(mu, sigma))+1)}" for i in range(size) for j in range(i + 1, size)]
+    G = [f"{i} {j} {int(abs(np.random.normal(mu, sigma))+1)}" for i in range(k) for j in range(i + 1, k)]
     G.insert(0, f"{k} {k*(k-1)//2}")
     return G
 
 def com_graph_limited_values(k, values):
-    G = [f"{i} {j} {random.choice(values)}" for i in range(size) for j in range(i + 1, size)]
+    G = [f"{i} {j} {random.choice(values)}" for i in range(k) for j in range(i + 1, k)]
     G.insert(0, f"{k} {k*(k-1)//2}")
     return G
 
-save_instance(com_graph_rand, range(1, 101))
+save_instance(com_graph_rand, range(100, 1001, 100))
 #complete_graph_weight_1(11)
 
