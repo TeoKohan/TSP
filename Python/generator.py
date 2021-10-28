@@ -15,7 +15,7 @@ def save_instance(function, g_range):
             for e in g:
                 print(e, file=f, end="\n")
 
-def com_graph_rand(k, floor = 0, ceil = 100):
+def com_graph_rand(k, floor = 1, ceil = 100):
         G = [f"{i} {j} {random.randint(floor, ceil)}" for i in range(k) for j in range(i + 1, k)]
         G.insert(0, f"{k} {k*(k-1)//2}")
         return G
@@ -30,6 +30,7 @@ def com_graph_limited_values(k, values):
     G.insert(0, f"{k} {k*(k-1)//2}")
     return G
 
+#save_instance(com_graph_rand, range(1, 101))
 save_instance(com_graph_rand, range(100, 1001, 100))
-#complete_graph_weight_1(11)
+
 

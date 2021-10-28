@@ -22,7 +22,7 @@ namespace Algorithm {
 
             for (int i = 0; i < n; ++i) {
                 int j = (i+1) % n;
-                fitness += aspiration[P[i]][P[j]] * 100 - apparitions[P[i]][P[j]] * 100 - G[P[i]][P[j]] * 10;
+                fitness += aspiration[P[i]][P[j]] * 75 - apparitions[P[i]][P[j]] * 100 - G[P[i]][P[j]] * 33;
             }
 
             return fitness;
@@ -98,7 +98,7 @@ namespace Algorithm {
         std::function<void(Solution)> register_solution =
         [&] (Solution S) {
 
-            const int MAX_Q_SIZE = 16;
+            const int MAX_Q_SIZE = 1023;
 
             Path P = S.path;
             S.weight = fitness(P);
@@ -122,13 +122,21 @@ namespace Algorithm {
         if (G.vertices() == 1)
                 return {0, {}};
 
-        Solution best = Algorithm::greedy(R, G);   //initial solution
+        Solution best = Algorithm::local_search(R, G);   //initial solution
         Solution actual = best;
 
         std::vector<Solution> SS;
-        int iterations = 100;
+        int const MAX_ITER = 512;
+        int iterations = MAX_ITER;
+        int last_length = 0;
+
         while (iterations--) {
-            auto N = Algorithm::two_opt_conj(actual, G, 256);
+            std::string s = std::to_string((int)((float)iterations*100/MAX_ITER)) + '%';
+            for (int i = 0; i < last_length; ++i)
+                std::cout << '\b';
+            std::cout << s;
+            last_length = s.size();
+            auto N = Algorithm::two_opt_conj(actual, G, 31);
             //std::cout << Solution::evaluate(N.top().path, G) << "  -  " << Algorithm::two_opt(actual, G).weight << std::endl;
             while (N->size()) {
                 SS.push_back(N->top());
@@ -141,7 +149,7 @@ namespace Algorithm {
             best   = *std::min_element(SS.begin(), SS.end());
             actual = *std::max_element(SS.begin(), SS.end(), least_fit);
 
-            //register_solution(actual);
+            register_solution(actual);
         }
 
         // %N -%N+random %LV -> vector[vector[Swaps]]

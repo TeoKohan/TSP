@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
      {"local search", Algorithm::local_search}, {"tabu", Algorithm::tabu_search}};
     std::map<std::string, int> winner_count;
 
-    auto GS = reader.read("com_graph_rand-1-100.txt");
+    auto GS = reader.read("com_graph_rand-100-1000.txt");
     std::cout << "=====|=====|=====" << std::endl;
     for (const auto& G : GS) {
         int min = INF;
