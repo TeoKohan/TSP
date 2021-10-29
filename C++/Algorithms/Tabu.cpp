@@ -26,7 +26,7 @@ namespace Algorithm {
 
             for (int i = 0; i < n; ++i) {
                 int j = (i+1) % n;
-                //lower fitness is better
+                //lower fitness is better, apparitions per average weight
                 fitness -= G[P[i]][P[j]] * 100 + aspiration[P[i]][P[j]] * 100 - apparitions[P[i]][P[j]] * 50;
             }
 
@@ -206,8 +206,6 @@ namespace Algorithm {
 
             delete(N);
         }
-
-        // %N -%N+random %LV -> vector[vector[TSwaps]]
         
         return best.solution;
     }

@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
      {"local search", Algorithm::local_search}, {"tabu", Algorithm::tabu_search}};
     std::map<std::string, int> winner_count;
 
-    auto GS = reader.read("a280.tsp.formatted");
+    auto GS = reader.read("u2152.tsp.formatted");
     std::cout << "=====|=====|=====" << std::endl;
     for (const auto& G : GS) {
         
