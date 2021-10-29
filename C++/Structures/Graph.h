@@ -35,6 +35,11 @@ struct Edge {
     bool operator != (const Edge& rhs) const {
         return  !(*this == rhs);
     }
+
+    bool operator < (const Edge& rhs) const {
+        return  from < rhs.from ||
+            (from == rhs.from && to < rhs.to);
+    }
 };
 
 

@@ -24,6 +24,12 @@ struct Solution {
     Solution() : weight(0), path(Path()) {}
     Solution(int weight, Path path) : weight(weight), path(path) {}
 
+    Solution& operator = (const Solution& rhs) {
+        weight = rhs.weight;
+        path = rhs.path;
+        return *this;
+    }
+
     bool operator < (const Solution& rhs) const {
         return weight < rhs.weight ||
                (weight == rhs.weight && path.size() <= rhs.path.size());
@@ -50,7 +56,31 @@ struct Solution {
         P.insert(P.end(), path.cbegin(), path.cbegin()+i);   //begin -> k
         path = P;
     }
-}; 
+};
+
+struct Swap {
+    Edge before;
+    Edge after;
+
+    bool operator == (const Swap& rhs) const {
+        return (before == rhs.before && after == rhs.after) ||
+               (before == rhs.after  && after == rhs.before);
+    }
+
+    bool operator < (const Swap& rhs) const {
+        return before < rhs.before || 
+            (before == rhs.before && after < rhs.after);
+    }
+};
+
+struct SwapSolution {
+    Swap swap;
+    Solution solution;
+
+    bool operator < (const SwapSolution& rhs) const {
+        return solution < rhs.solution;
+    }
+};
 
 typedef std::function<Solution(int, const Graph&)> TSP;
 
@@ -61,7 +91,6 @@ namespace Algorithm {
     Solution MST(int R, const Graph& G);
     Solution MST_all(int R, const Graph& G);
 
-    std::priority_queue<Solution>* two_opt_conj (Solution S, const Graph& G, int k = 1);
     Solution& two_opt(Solution& S, const Graph& G);
 
     Solution local_search(int R, const Graph& G);

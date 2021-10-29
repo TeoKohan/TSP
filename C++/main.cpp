@@ -17,6 +17,9 @@
 
 #define INF -1
 
+std::string Python = "../Test/Python/";
+std::string Elib = "../Test/Elib/";
+
 std::string p_limited = "complete-graph-limited-values/";
 std::string p_normal  = "complete-graph-normal-dist/";
 std::string p_random  = "complete-graph-random-weight/";
@@ -25,19 +28,21 @@ int main(int argc, char* argv[]) {
     Solution S;
     Graph G;
     
-    IO reader("../Test/Python/");
+    IO reader(Elib);
 
     std::vector<IO::TSPName> fs = 
-    {{"greedy", Algorithm::greedy}, {"MST", Algorithm::MST},
+    {{"greedy", Algorithm::greedy}, /*{"MST", Algorithm::MST},*/
      {"local search", Algorithm::local_search}, {"tabu", Algorithm::tabu_search}};
     std::map<std::string, int> winner_count;
 
-    auto GS = reader.read("com_graph_rand-100-1000.txt");
+    auto GS = reader.read("a280.tsp.formatted");
     std::cout << "=====|=====|=====" << std::endl;
     for (const auto& G : GS) {
+        
         int min = INF;
         std::string min_n = fs[0].name;
         std::cout << "vertices: " << G.vertices() << std::endl;
+        //std::cout << "MST: " << Tree::Prim(0, G).total_weight(G) << std::endl;
         for (const auto& f : fs) {
             auto ST = Time::run_function(0, G, f.algorithm);
             if (min == INF || ST.result.weight < min) {

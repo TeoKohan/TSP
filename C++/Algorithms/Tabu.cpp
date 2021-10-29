@@ -5,6 +5,8 @@
 #include"../Structures/Graph.h"
 
 #define INF -1
+#define EMPTY_SWAP {{0, 0}, {0, 0}}
+#define print(x) std::cout<< x << std::endl
 
 namespace Algorithm {
 
@@ -12,7 +14,9 @@ namespace Algorithm {
 
         int n = G.vertices();
         matrix<int> aspiration (n, std::vector<int>(n));
-        std::queue<Solution> Q;
+        std::queue<SwapSolution> Q;
+        std::set<Swap> TSwaps;
+        std::set<Solution> TSolutions;
         matrix<int> apparitions (n, std::vector<int>(n));
 
         std::function<int(const Path&)> fitness =
@@ -22,15 +26,16 @@ namespace Algorithm {
 
             for (int i = 0; i < n; ++i) {
                 int j = (i+1) % n;
-                fitness += aspiration[P[i]][P[j]] * 75 - apparitions[P[i]][P[j]] * 100 - G[P[i]][P[j]] * 33;
+                //lower fitness is better
+                fitness -= G[P[i]][P[j]] * 100 + aspiration[P[i]][P[j]] * 100 - apparitions[P[i]][P[j]] * 50;
             }
 
             return fitness;
         };
 
-        std::function<bool(const Solution&, const Solution&)> least_fit =
-        [&fitness] (const Solution& S, const Solution& R) {
-            return fitness(S.path) < fitness(R.path);
+        std::function<bool(const SwapSolution&, const SwapSolution&)> least_fit =
+        [&fitness] (const SwapSolution& S, const SwapSolution& R) {
+            return fitness(S.solution.path) < fitness(R.solution.path);
         };
 
         std::function<std::vector<Edge> (const matrix<int>&)> least_traveled_edges =
@@ -94,66 +99,116 @@ namespace Algorithm {
 
             return {Solution::evaluate(P, G), P};
         };
+        
+        std::function<void(SwapSolution, const Solution&)> register_solution =
+        [&] (SwapSolution SwSol, const Solution& best) {
+            const int MAX_Q_SIZE = 32;
 
-        std::function<void(Solution)> register_solution =
-        [&] (Solution S) {
-
-            const int MAX_Q_SIZE = 1023;
-
+            Solution S = SwSol.solution;
+            Swap W = SwSol.swap;
             Path P = S.path;
-            S.weight = fitness(P);
-            Q.push(S);
+            
+            S.weight = best.weight - S.weight;
+            Q.push(SwSol);
+            TSolutions.insert(S);
+            TSwaps.insert(W);
             for (int i = 0; i < n; ++i) {
                 ++apparitions[P[i]][P[(i+1)%n]];
-                apparitions[Q.front().path[i]][Q.front().path[(i+1)%n]] -= 
-                                                    Q.size() > MAX_Q_SIZE;
-
+                // apparitions[Q.front().path[i]][Q.front().path[(i+1)%n]] -= 
+                //                                    Q.size() > MAX_Q_SIZE;
+                Solution R = Q.front().solution;
                 aspiration[P[i]][P[(i+1)%n]] += S.weight;
-                aspiration[Q.front().path[i]][Q.front().path[(i+1)%n]] -=
-                                                    Q.size() > MAX_Q_SIZE * Q.front().weight;                                  
+                aspiration[R.path[i]][R.path[(i+1)%n]] -=
+                                                    Q.size() > MAX_Q_SIZE * R.weight;                                  
             }
 
-            if (Q.size() > MAX_Q_SIZE)
+            if (Q.size() > MAX_Q_SIZE) {
+                TSolutions.erase(Q.front().solution);
+                TSwaps.erase(Q.front().swap);
                 Q.pop();
+            }
 
             return;
+        };
+
+        std::function<std::set<SwapSolution>*(Solution, const Graph&, int)> two_opt = 
+        [] (Solution S, const Graph& G, int k) -> std::set<SwapSolution>* {
+            std::function<int(int a, int b, int c, int d)> swap_weight =
+            [&G](int a, int b, int c, int d) {
+                return (G[a][c] + G[b][d]) - (G[a][b] + G[c][d]); //swapped - former
+            };
+
+            std::set<SwapSolution>* SS = new std::set<SwapSolution>();
+
+            auto a = S.path.begin(), c = a + 1;
+            while (a != S.path.end() && c != S.path.end()) {
+                auto b = a+1 == S.path.end() ? S.path.begin() : a+1;
+                auto d = c+1 == S.path.end() ? S.path.begin() : c+1;
+
+                if (a != c && swap_weight(*a, *b, *c, *d) < 0) {
+                    
+
+                    Solution T = S;
+                    S.weight += swap_weight(*a, *b, *c, *d);
+                    
+                    if (b < c)
+                        std::reverse(b, c+1);
+                    else
+                        std::reverse(d, a+1);
+
+                    Swap SW = {{*a, *c}, {*b, *d}};
+                    SS->insert({SW, S});
+                    S = T;
+                    if (SS->size() > k)
+                        SS->erase(std::prev(SS->end()));
+                }
+
+                if (++c == S.path.end())
+                    if (++a != S.path.end())
+                        c = a + 1;
+            }
+
+            return SS;
         };
 
         if (G.vertices() == 1)
                 return {0, {}};
 
-        Solution best = Algorithm::local_search(R, G);   //initial solution
-        Solution actual = best;
+        SwapSolution best = {EMPTY_SWAP, Algorithm::greedy(R, G)};
+        SwapSolution actual = best;
 
-        std::vector<Solution> SS;
         int const MAX_ITER = 512;
         int iterations = MAX_ITER;
-        int last_length = 0;
 
         while (iterations--) {
-            std::string s = std::to_string((int)((float)iterations*100/MAX_ITER)) + '%';
-            for (int i = 0; i < last_length; ++i)
-                std::cout << '\b';
-            std::cout << s;
-            last_length = s.size();
-            auto N = Algorithm::two_opt_conj(actual, G, 31);
-            //std::cout << Solution::evaluate(N.top().path, G) << "  -  " << Algorithm::two_opt(actual, G).weight << std::endl;
-            while (N->size()) {
-                SS.push_back(N->top());
-                N->pop();
-            }
-            delete(N);
-            
-            SS.push_back(least_traveled(least_traveled_edges(apparitions)));
-            
-            best   = *std::min_element(SS.begin(), SS.end());
-            actual = *std::max_element(SS.begin(), SS.end(), least_fit);
+            auto N = two_opt(actual.solution, G, 8);
 
-            register_solution(actual);
+            // N->erase(std::remove_if(N->begin(),
+            //                         N->end(),
+            //                         [&](const Solution a) {return true;}),
+            //         N->end());
+
+            for (auto it = N->begin(); it != N->end();)
+                if (TSolutions.count((*it).solution) || TSwaps.count((*it).swap))
+                    N->erase(it++);
+                else
+                    ++it;
+
+            if (!N->size()) {
+                auto L = least_traveled(least_traveled_edges(apparitions));
+                N->insert({EMPTY_SWAP, L});
+            }
+
+            best   = std::min(best, *std::min_element(N->begin(), N->end()));
+            actual = *std::max_element(N->begin(), N->end(), least_fit);
+
+            register_solution(actual, best.solution);
+
+            delete(N);
         }
 
-        // %N -%N+random %LV -> vector[vector[Swaps]]
+        // %N -%N+random %LV -> vector[vector[TSwaps]]
         
-        return best;
+        return best.solution;
     }
 }

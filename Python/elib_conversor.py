@@ -15,31 +15,36 @@ import os
 #       CUANDO VA A FORMAR EL CICLO LUEGO DE DFS, SOLO PUEDE CONECTAR
 #       LA ARISTA DE PESO 999
 
+os.chdir('..')
 curpath = os.path.abspath(os.curdir)
 
+new_path = curpath + "/Test/Elib/"
+if not os.path.exists(new_path):
+    os.mkdir(new_path)
+
 def convert_graph(filename):
-    new_path = curpath + "/Test/Elib/"
-    if not os.path.exists(new_path):
-        os.mkdir(new_path)
 
-    prob = tl.load("TSP/" + filename)
+    prob = tl.load(new_path + filename)
 
-    if (os.path.exists(new_path + filename + ".formatted.txt")):
-        return
+    if "formatted" in filename:
+       return
 
-    salida = open(new_path + filename + ".formatted.txt", 'w')
+    salida = open(new_path + filename + ".formatted", 'w')
 
     graph = prob.get_graph()
     print(1, file=salida)
     print(graph.number_of_nodes(),graph.number_of_edges(), file=salida)
+    
+    no_zero = not 0 in graph.nodes
+
     for u,v in graph.edges:
         if u<v:
-            print(u,v,graph.get_edge_data(u,v)['weight'], file=salida)
+            print(u-no_zero,v-no_zero,graph.get_edge_data(u,v)['weight'], file=salida)
             
     return graph
 
 def generate_all():
-    graphs = os.listdir(curpath+"/TSP")
+    graphs = os.listdir(new_path)
     for g in graphs:
         convert_graph(g)
 
