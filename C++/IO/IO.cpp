@@ -25,7 +25,7 @@ std::vector<Graph> IO::read(const std::string& filename) {
     return test_cases;
 }
 
-void test_output(const std::string& output_filename, const std::vector<Graph>& GS, const std::vector<IO::TSPName>& fs) {
+void IO::test_output(const std::string& output_filename, const std::vector<Graph>& GS, const std::vector<IO::TSPName>& fs) {
     std::ofstream results;
     
     results.open(output_filename + ".csv");

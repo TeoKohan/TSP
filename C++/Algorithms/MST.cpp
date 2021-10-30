@@ -20,7 +20,7 @@ namespace Algorithm {
 
         traverse(R);
         S.weight += G[*S.path.rbegin()][R];
-
+        assert(S.weight == S.evaluate(S.path, G));
         return S;
     }
 

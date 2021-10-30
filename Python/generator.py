@@ -31,6 +31,6 @@ def com_graph_limited_values(k, values):
     return G
 
 #save_instance(com_graph_rand, range(1, 101))
-save_instance(com_graph_rand, range(100, 1001, 100))
+save_instance(com_graph_rand, range(5, 6, 1))
 
 

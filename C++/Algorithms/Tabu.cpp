@@ -99,37 +99,6 @@ namespace Algorithm {
 
             return {Solution::evaluate(P, G), P};
         };
-        
-        std::function<void(SwapSolution, const Solution&)> register_solution =
-        [&] (SwapSolution SwSol, const Solution& best) {
-            const int MAX_Q_SIZE = 32;
-
-            Solution S = SwSol.solution;
-            Swap W = SwSol.swap;
-            Path P = S.path;
-            
-            S.weight = best.weight - S.weight;
-            Q.push(SwSol);
-            TSolutions.insert(S);
-            TSwaps.insert(W);
-            for (int i = 0; i < n; ++i) {
-                ++apparitions[P[i]][P[(i+1)%n]];
-                // apparitions[Q.front().path[i]][Q.front().path[(i+1)%n]] -= 
-                //                                    Q.size() > MAX_Q_SIZE;
-                Solution R = Q.front().solution;
-                aspiration[P[i]][P[(i+1)%n]] += S.weight;
-                aspiration[R.path[i]][R.path[(i+1)%n]] -=
-                                                    Q.size() > MAX_Q_SIZE * R.weight;                                  
-            }
-
-            if (Q.size() > MAX_Q_SIZE) {
-                TSolutions.erase(Q.front().solution);
-                TSwaps.erase(Q.front().swap);
-                Q.pop();
-            }
-
-            return;
-        };
 
         std::function<std::set<SwapSolution>*(Solution, const Graph&, int)> two_opt = 
         [] (Solution S, const Graph& G, int k) -> std::set<SwapSolution>* {
@@ -146,7 +115,6 @@ namespace Algorithm {
                 auto d = c+1 == S.path.end() ? S.path.begin() : c+1;
 
                 if (a != c && swap_weight(*a, *b, *c, *d) < 0) {
-                    
 
                     Solution T = S;
                     S.weight += swap_weight(*a, *b, *c, *d);
@@ -171,8 +139,37 @@ namespace Algorithm {
             return SS;
         };
 
+        std::function<void(SwapSolution, const Solution&)> register_solution =
+        [&] (SwapSolution SwSol, const Solution& best) {
+            const int MAX_Q_SIZE = 32;
+
+            Solution S = SwSol.solution;
+            Swap W = SwSol.swap;
+            Path P = S.path;
+            
+            S.weight = best.weight - S.weight;
+            Q.push(SwSol);
+            TSolutions.insert(S);
+            TSwaps.insert(W);
+            for (int i = 0; i < n; ++i) {
+                ++apparitions[P[i]][P[(i+1)%n]];
+                Solution R = Q.front().solution;
+                aspiration[P[i]][P[(i+1)%n]] += S.weight;
+                aspiration[R.path[i]][R.path[(i+1)%n]] -=
+                                                    Q.size() > MAX_Q_SIZE * R.weight;                                  
+            }
+
+            if (Q.size() > MAX_Q_SIZE) {
+                TSolutions.erase(Q.front().solution);
+                TSwaps.erase(Q.front().swap);
+                Q.pop();
+            }
+
+            return;
+        };
+
         if (G.vertices() == 1)
-                return {0, {}};
+            return {0, {}};
 
         SwapSolution best = {EMPTY_SWAP, Algorithm::greedy(R, G)};
         SwapSolution actual = best;
@@ -182,11 +179,6 @@ namespace Algorithm {
 
         while (iterations--) {
             auto N = two_opt(actual.solution, G, 8);
-
-            // N->erase(std::remove_if(N->begin(),
-            //                         N->end(),
-            //                         [&](const Solution a) {return true;}),
-            //         N->end());
 
             for (auto it = N->begin(); it != N->end();)
                 if (TSolutions.count((*it).solution) || TSwaps.count((*it).swap))

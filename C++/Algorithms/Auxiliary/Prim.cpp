@@ -1,8 +1,10 @@
+#include <algorithm>
 #include <iostream>
+#include <assert.h>
 #include "../../Structures/Graph.h"
 #include "../../Structures/Tree.h"
 
-#define BOT Edge(0, 0, 0)
+#define BOT -1
 #define INF -1
 
 /** Prim on a connected graph. 
@@ -13,29 +15,31 @@
  */
 Tree Tree::Prim(int R, const Graph& G) {
     Tree T(R, G.vertices());
-    std::set<int> V = {R};
-
-    //Returns the minimum weight edge that connects V and V(G) / V
-    std::function<Edge(const std::set<int>&)> min_bridge;
-    min_bridge = [&G](const std::set<int>& V) {
-        Edge min = BOT;
-
-        for (int i : V)
-            for (int j = 0; j < G.vertices(); ++j)
-                if (!V.count(j))
-                    if (G[i][j] != INF && (min == BOT || G[i][j] < min.weight))
-                        min = {i, G[i][j], j};
-        return min;
-    };
+    std::vector<bool> V(G.vertices(), false);
+    std::vector<int> D = G[R];
+    T.P = std::vector<int>(G.vertices(), R);
+    T.P[R] = BOT;
+    V[R] = true;
     
     for (size_t i = 1; i < G.vertices(); ++i) {
-        Edge e = min_bridge(V);
-        if (e == BOT) 
-            throw std::domain_error("Graph is not connected.");
-        V.insert(e.to);
-        T.P[e.to] = e.from;
-        T.C[e.from].push_back(e.to);
+        int v = BOT;
+        for (int j = 0; j < G.vertices(); ++j) {
+            if (!V[j]) {
+                v = (v == BOT ? j : std::min(v, j, [&D](int a, int b){return D[a] < D[b];}));
+            }
+        }
+         
+        V[v] = true;
+        for (int j = 0; j < G.vertices(); ++j)
+            if (!V[j] && G[v][j] < D[j]) {
+                D[j] = G[v][j];
+                T.P[j] = v;
+            }
     }
     
+    for (int i = 0; i < T.P.size(); ++i)
+        if (T.P[i] != BOT)
+            T.C[T.P[i]].push_back(i);
+    //std::cout << T << std::endl;
     return T;
 }
